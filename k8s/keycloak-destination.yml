@@ -1,0 +1,25 @@
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: dr-keycloak-dev
+# spec:
+#   host: keycloak
+#   trafficPolicy:
+#     loadBalancer:
+#       consistentHash:
+#         httpCookie:
+#           name: AUTH_SESSION_ID_LEGACY
+#           ttl: 0s
+
+  # subsets:
+  # - name: v1
+  #   labels:
+  #     version: v1
+  #   trafficPolicy:
+  #     loadBalancer:
+  #       consistentHash:
+  #         httpHeaderName: Cookie
+  #         useSourceIp: false
+  #       sticky:
+  #         cookie:
+  #           name: AUTH_SESSION_ID

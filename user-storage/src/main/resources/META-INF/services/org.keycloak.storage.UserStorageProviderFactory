@@ -1,0 +1,2 @@
+#org.keycloak.quickstart.storage.user.MyExampleUserStorageProviderFactory
+org.keycloak.custom.storage.user.CustomUserStorageProviderFactory

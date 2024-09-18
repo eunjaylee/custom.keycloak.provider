@@ -1,0 +1,25 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Rollout
+# metadata:
+#   name: ui
+# spec:
+#   replicas: 1
+#   strategy:
+#     canary:
+#       steps:
+#         - setWeight: 30
+#         - pause: {}
+#   revisionHistoryLimit: 2
+#   template:
+#     metadata:
+#       annotations:
+#         sidecar.istio.io/inject: "true"
+#         sidecar.jaegertracing.io/inject: "true"
+#       labels:
+#         image-version: 2021-10-21T08.22.05
+#     spec:
+#       serviceAccountName: ui
+#       imagePullSecrets:
+#         - name: ecr-registry-push-pull
+#       containers:
+#         - image: image-registry.openshift-image-registry.svc:5000/keycloak-dev/keycloak:0.0.2

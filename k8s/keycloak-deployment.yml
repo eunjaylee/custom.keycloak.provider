@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true'
+      labels:
+        app: keycloak
+    spec:
+      serviceAccountName: keycloak
+      containers:
+      - name: keycloak
+        image: image-registry.openshift-image-registry.svc:5000/keycloak-dev/keycloak:0.0.8
+        args: ["start"]
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+          - name: conf
+            readOnly: true
+            mountPath: /opt/keycloak/ssl/
+          # - name: properties
+          #   readOnly: true
+          #   mountPath: /opt/keycloak/conf/quarkus.properties
+        
+        envFrom:
+        # - configMapRef:
+        #    name: keycloak-dev-env
+        - secretRef:
+           name: keycloak-dev-env-test
+
+      restartPolicy: Always
+      volumes:
+      - name: conf
+        projected:
+          sources:
+            - secret:
+               name: keycloak-dev-tls
+               items:
+                 - key: CERTIFICATE_FILE
+                   path: test.csr
+            - secret:
+               name: keycloak-dev-tls
+               items:
+                 - key: CERTIFICATE_KEY_FILE
+                   path: key.pem   
+
+      # - name: properties
+      #   secret:
+      #     secretName: quarkus.properties

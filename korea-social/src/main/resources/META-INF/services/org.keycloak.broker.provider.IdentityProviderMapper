@@ -1,0 +1,3 @@
+ko.kyobobook.oauth.provider.modules.naver.NaverUserAttributeMapper
+ko.kyobobook.oauth.provider.modules.kakao.KakaoUserAttributeMapper
+ko.kyobobook.oauth.provider.modules.apple.AppleUsernameTemplateMapper

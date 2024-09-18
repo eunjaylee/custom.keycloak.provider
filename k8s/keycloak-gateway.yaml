@@ -1,0 +1,35 @@
+# apiVersion: networking.istio.io/v1alpha3
+# kind: Gateway
+# metadata:
+#   name: gw-keycloak-dev
+# spec:
+#   selector:
+#     istio: ingressgateway # use istio default controller
+#   servers:
+#     - port:
+#         number: 80
+#         name: http
+#         protocol: HTTP
+#     # - port:
+#     #     number: 443
+#     #     name: http
+#     #     protocol: HTTPS    
+#       hosts:
+#       - keycloak.ndev.kyobobook.co.kr 
+
+# ---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: vs-keycloak-dev
+# spec:
+#   hosts: 
+#    - '*'  # servicename or FQDN
+#   gateways:
+#     - gw-keycloak-dev
+#   http:
+#   - route:  
+#     - destination:
+#         host: keycloak
+#         port:
+#           number: 8080

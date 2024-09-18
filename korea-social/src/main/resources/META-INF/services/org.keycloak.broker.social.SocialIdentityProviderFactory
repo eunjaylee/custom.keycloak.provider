@@ -1,0 +1,3 @@
+ko.kyobobook.oauth.provider.modules.apple.AppleIdentityProviderFactory
+ko.kyobobook.oauth.provider.modules.naver.NaverProviderFactory
+ko.kyobobook.oauth.provider.modules.kakao.KakaoProviderFactory

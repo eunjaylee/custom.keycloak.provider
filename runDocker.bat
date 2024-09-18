@@ -1,0 +1,1 @@
+docker-compose --project-name keycloakify-sample -f themes/kbook-theme/keycloak-postgres.yml up

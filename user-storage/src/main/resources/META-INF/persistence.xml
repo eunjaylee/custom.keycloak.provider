@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="user-store" transaction-type="JTA">
+        <class>org.keycloak.custom.storage.user.UserEntity</class>
+        <class>org.keycloak.custom.storage.user.SocialEntity</class>
+        <class>org.keycloak.custom.storage.user.MobileAuthEntity</class>
+        <class>org.keycloak.custom.storage.user.SocialProviderLink</class>
+
+        <properties>
+            <!-- Database connection properties start-->
+            <!-- Set Driver Name -->
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+            <!-- Set URL -->
+            <!-- property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/keycloak"/ -->
+            <!-- Set User Name -->
+            <!-- property name="hibernate.connection.username" value="keycloak" /-->
+            <!-- Set Password -->
+            <!-- property name="hibernate.connection.password" value="keycloak" /-->
+            <!-- end -->
+            <!-- Other Hibernate properties -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+
+            <property name="hibernate.connection.datasource" value="user-store" />
+            <!-- Sets the name of the datasource to be the same as the datasource name in quarkus.properties-->
+            <!-- <property name="hibernate.connection.datasource" value="javax.sql.DataSource" /> -->
+            <property name="jakarta.persistence.transactionType" value="JTA" />
+
+            <!-- ddl 권한 없음 none 향후 적용 -->
+            <property name="hibernate.hbm2ddl.auto" value="none" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+        </properties>
+    </persistence-unit>
+</persistence>

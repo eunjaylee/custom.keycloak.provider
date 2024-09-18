@@ -1,0 +1,28 @@
+secretGenerator:
+- name: keycloak-dev-env-test
+  literals:
+    - KEYCLOAK_ADMIN=admin
+    - KEYCLOAK_ADMIN_PASSWORD=admin
+    - KC_PROXY=edge
+    - KC_HEALTH_ENABLED=true
+    - KC_METRICS_ENABLED=true
+    - KC_LOG_LEVEL=DEBUG
+    # https://github.com/keycloak/keycloak/issues/16005
+    # - KC_HTTP_ENABLED=true
+    - KC_HOSTNAME_STRICT=false
+    - KC_HOSTNAME_URL=https://keycloak.ndev.kyobobook.co.kr
+    - KC_HOSTNAME_ADMIN_URL=https://keycloak.ndev.kyobobook.co.kr
+    - KC_HTTPS_CERTIFICATE_FILE= /opt/keycloak/ssl/test.csr
+    - KC_HTTPS_CERTIFICATE_KEY_FILE= /opt/keycloak/ssl/key.pem
+
+  ### DB정보
+    - KC_DB=postgres
+    - KC_DB_VENDOR=POSTGRES
+    - KC_DB_ADDR=10.144.32.64:3000
+    - KC_DB_DATABASE=kclk_dev
+    - KC_DB_USERNAME=keycloakown
+    - KC_DB_SCHEMA=keycloak
+    - KC_DB_PASSWORD=kb_keycloakown_p21
+    - KC_DB_URL=jdbc:postgresql://10.144.32.64:3000/kclk_dev
+generatorOptions:
+  disableNameSuffixHash: true

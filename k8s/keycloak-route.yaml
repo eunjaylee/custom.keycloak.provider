@@ -1,0 +1,21 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: keycloak
+  namespace: istio-system
+  labels:
+    maistra.io/gateway-name: gw-keycloak-dev
+    maistra.io/gateway-namespace: keycloak-dev
+    maistra.io/generated-by: ior
+  annotations:
+    maistra.io/original-host: keycloak.test.co.kr
+    #haproxy.router.openshift.io/timeout: 24h
+spec:
+  host: keycloak.test.co.kr
+  to:
+    kind: Service
+    name: istio-ingressgateway
+    weight: 100
+  port:
+    targetPort: http2
+  wildcardPolicy: None
